@@ -6,7 +6,7 @@ stats <- function(x){
                  c("mean",
                    "median",
                    "sd"))){
-    stop("Argument statistics should be either 'mean', 'median', 'sd'.") #check if input is included in mean, median, and sd
+    stop("Argument statistics should be either 'mean', 'median', 'sd'.") #check if input is included in mean, median, and standard deviation
   }
   drg_summary <- drg %>%
     group_by(DRG.Definition) %>% #group by DRG codes
@@ -14,4 +14,3 @@ stats <- function(x){
   colnames(drg_summary)[2] <- x #change column name into corresponding calculation
   return(drg_summary) #return summary
 }
-
