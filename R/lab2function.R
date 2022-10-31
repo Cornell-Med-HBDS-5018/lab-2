@@ -1,7 +1,24 @@
-#function 2
-#Example: stats('mean')
-library(tidyverse)
+## load the data
+load('data/drg_data.RData')
 
+#function 2
+
+#' Statistics over all of the DRG codes for average Medicare payments
+#'
+#' This function calculates statistics over all of the DRG codes for average Medicare payments.
+#'
+#' @param x  a string for type of statistics calculated
+#'
+#' @return Statistics for average Medicare payments
+#' @export
+#'
+#' @importFrom magrittr %>%
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarise
+#'
+#' @examples
+#' stats('mean')
+#'
 stats <- function(x){
   if(!is.element(x,
                  c("mean",
@@ -18,13 +35,27 @@ stats <- function(x){
 
 
 # Function 1 code below
-## load in the libraries
-library(readr)
-library(ggplot2)
-library(dplyr)
-library(janitor)
-library(stringr)
-library(snakecase)
+
+#' Boxplot of payments by DRG code
+#'
+#' This function makes a boxplot of payments by DRG code.
+#'
+#' @param payment_type a string for type of payments
+#'
+#' @return A boxplot of payments by DRG code
+#' @export
+#'
+#' @importFrom magrittr %>%
+#' @importFrom janitor clean_names
+#' @importFrom dplyr mutate
+#' @importFrom stringr str_sub
+#' @importFrom snakecase to_snake_case
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 geom_boxplot
+#'
+#' @examples
+#' boxplotter('Average Covered Charges')
+#'
 boxplotter <- function(payment_type){
   plot <- drg_data %>%
     clean_names() %>% # Convert names to snakecase first
@@ -40,4 +71,4 @@ boxplotter <- function(payment_type){
   return (plot) # Output the developed boxplot
 }
 
-boxplotter('Average Covered Charges')
+
